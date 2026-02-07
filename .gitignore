@@ -1,0 +1,32 @@
+# ARCHIVOS DE AUTENTICACIÓN (NUNCA SUBIR)
+client_secrets.json
+token.pickle
+client_secret_*.json
+
+# CARPETAS CON VIDEOS
+videos/
+
+# ARCHIVOS DE VIDEO
+*.mp4
+*.mov
+*.avi
+
+# ARCHIVOS TEMPORALES DE PYTHON
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ARCHIVOS DE CONFIGURACIÓN PERSONAL
+*.ini
+*.cfg
+config.ini
+
+# LOGS Y DATOS
+*.log
+*.db
+*.sqlite
+
+# SISTEMA
+.DS_Store
+Thumbs.db

@@ -1,0 +1,16 @@
+{
+  "youtube": {
+    "default_privacy": "private",
+    "default_category": "22",
+    "default_tags": ["música", "audio", "video"],
+    "delay_between_uploads": 10,
+    "max_retries": 3
+  },
+  "video": {
+    "resolution": [1920, 1080],
+    "fps": 24,
+    "codec": "libx264",
+    "audio_codec": "aac",
+    "output_folder": "videos"
+  }
+}
