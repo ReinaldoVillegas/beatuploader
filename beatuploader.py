@@ -15,6 +15,19 @@ import time
 # =========== PARCHE PARA PILLOW ANTIALIAS ===========
 import PIL.Image
 import PIL
+import random
+DEFAULT_DESCRIPTION = """this version of the beat is *free for youtube and soundcloud *, email/dm to buy a lease
+
+https://www.instagram.com/goodbyenostalgiabeats/
+goodbyenostalgiabeats@gmail.com
+must credit goodbyenostalgiabeats
+
+key and bpm:  dm me ;)
+
+#nettspendtypebeat #wegonebeoktypebeat #oktypebeat
+
+
+nettspend type beat free for profit, nettspend bafk type beat, nettspend tyla type beat, nettspend type beat, osamason type beat, type beat, type beat nettspend, xaviersobased type beat, yhapojj x nettspend type beat, jerk type beat, free type beat, free nettspend type beat, yhapojj type beat, free osamason type beat, osamason type beat hard, glokk40spaz type beat, instrumental yhapojj, subiibabii type beat, osamason type beat free, type beat xaviersobased, type beat yhapojj free, type beat nettspend free, type beat glokk40spaz, free yhapojj type beat, osamason x ok type beat, osamason, yhpaojj type beat 2023, netspend type beat, ok type beat, type beat yhapojj, osamason type beat free for profit, yhapojj instrumental, osamason type beat 2023, nettspend, tainiykick, osamason type beat 808, osamason x ken carson type beat, type beat subiibabii, ken carson a great chaos type beat, osamason x osama season type beat, a great chaos type beat, ken carson type beat, osamason ok type beat, osamason type beat nettspend, osamason nettspend, nettspend ok type beat, ken carson type beat 2023, prod ok, ken carson type beat free, osama season type beat, osamason type beat ok, osamason perc40 type beat, 1oneam type beat, boolymon type beat, nettspend sample type beat, 2024 freestyle, wegonebeok type beat, osamason boolymon type beat, prod ok type beat, osamson ok type beat, osamson sampled type beat, osamason nettspend type beat, osamson, osamson prod ok, nettspend osamson prod ok type beat, netspend osamason type beat, nettspend deftones, nettspend 2024, nettspend deftones type beat, nett spend, nettspend osamason, pour up, osamason pour up, wavguide, yhapojj type beat, type beat yhapojj, type beat yhapojj free,free yhapojj type beat,xaviersobased type beat, type beat xaviersobased,glokk40spaz type beat,type beat glokk40spaz,yhapojj x xaviersobased type beat,yhpaojj type beat 2023,xaviersobased type beat 2023,glokk40spaz type beat 2023,type beat,free type beat,yhapojj instrumental,instrumental yhapojj, instrumental glokk40spaz,instrumental xaviersobased,subiibabii type beat,type beat subiibabii,nettspend type beat,type beat nettspend,yhapojj x nettspend type beat,type beat nettspend free,free nettspend type beat"""
 
 # Arreglar ANTIALIAS para versiones nuevas de Pillow
 if not hasattr(PIL.Image, 'ANTIALIAS'):
@@ -99,7 +112,7 @@ class BatchYouTubeUploader:
             
             # Obtener dimensiones originales de la imagen
             img_width, img_height = image_clip.size
-            print(f"📐  Tamaño original de imagen: {img_width}x{img_height}")
+            #print(f"📐  Tamaño original de imagen: {img_width}x{img_height}")
             
             # Tamaño del video (Full HD 1080p)
             video_width, video_height = 1920, 1080
@@ -119,16 +132,16 @@ class BatchYouTubeUploader:
                 img_width = int(img_width * scale_min)
                 img_height = int(img_height * scale_min)
                 image_clip = image_clip.resize((img_width, img_height))
-                print(f"📐  Escalado mínimo aplicado: {img_width}x{img_height}")
+                #print(f"📐  Escalado mínimo aplicado: {img_width}x{img_height}")
             
             # Paso 2: Escalar para que la altura sea 1080px (FILL HEIGHT)
             scale_height = video_height / img_height
             new_height = video_height  # Exactamente 1080px
             new_width = int(img_width * scale_height)
             
-            print(f"📏  Escalando para altura 1080px:")
-            print(f"    • Factor de escala: {scale_height:.2f}")
-            print(f"    • Nuevo tamaño: {new_width}x{new_height}")
+            #print(f"📏  Escalando para altura 1080px:")
+            #print(f"    • Factor de escala: {scale_height:.2f}")
+            #print(f"    • Nuevo tamaño: {new_width}x{new_height}")
             
             # Redimensionar imagen
             image_clip = image_clip.resize((new_width, new_height))
@@ -140,10 +153,10 @@ class BatchYouTubeUploader:
             if new_width < video_width:
                 # La imagen es más angosta que el video → CENTRAR con bordes
                 x_position = (video_width - new_width) // 2
-                print(f"🎯  Imagen centrada: borde izquierdo/derecho")
-                print(f"    • Ancho imagen: {new_width}px")
-                print(f"    • Ancho video: {video_width}px")
-                print(f"    • Borde total: {video_width - new_width}px ({x_position}px cada lado)")
+                #print(f"🎯  Imagen centrada: borde izquierdo/derecho")
+                #print(f"    • Ancho imagen: {new_width}px")
+                #print(f"    • Ancho video: {video_width}px")
+                #print(f"    • Borde total: {video_width - new_width}px ({x_position}px cada lado)")
                 
                 # Crear fondo negro
                 from moviepy.editor import ColorClip
@@ -164,10 +177,10 @@ class BatchYouTubeUploader:
                 # La imagen es más ancha que el video → RECORTAR LADOS (centrado)
                 needs_crop = True
                 crop_amount = (new_width - video_width) // 2
-                print(f"✂️  Recortando lados para ajustar al ancho:")
-                print(f"    • Ancho imagen: {new_width}px")
-                print(f"    • Ancho video: {video_width}px")
-                print(f"    • Recortar: {crop_amount}px de cada lado")
+                #print(f"✂️  Recortando lados para ajustar al ancho:")
+                #print(f"    • Ancho imagen: {new_width}px")
+                #print(f"    • Ancho video: {video_width}px")
+                #print(f"    • Recortar: {crop_amount}px de cada lado")
                 
                 # Recortar imagen (crop)
                 image_clip = image_clip.crop(x1=crop_amount, x2=new_width - crop_amount)
@@ -177,7 +190,7 @@ class BatchYouTubeUploader:
                 
             else:
                 # Ancho perfecto (1920px) → usar directamente
-                print(f"✅  Ancho perfecto: 1920px")
+                #print(f"✅  Ancho perfecto: 1920px")
                 video_clip = image_clip
             
             # Añadir audio
@@ -204,9 +217,9 @@ class BatchYouTubeUploader:
                 background.close()
             
             print(f"✅  Video creado: {output_path}")
-            print(f"    • Resolución final: 1920x1080")
-            print(f"    • Imagen escalada a: {new_width}x{new_height}")
-            print(f"    • Estrategia: {'Fill Height' + (' + bordes' if new_width < video_width else ' + crop lados' if needs_crop else ' (perfect fit)')}")
+            #print(f"    • Resolución final: 1920x1080")
+            #print(f"    • Imagen escalada a: {new_width}x{new_height}")
+            #print(f"    • Estrategia: {'Fill Height' + (' + bordes' if new_width < video_width else ' + crop lados' if needs_crop else ' (perfect fit)')}")
             
             return output_path
             
@@ -358,8 +371,8 @@ class BatchYouTubeUploader:
                 
                 video_id = response['id']
                 print(f"✅  Subido: {title}")
-                print(f"   ID: {video_id}")
-                print(f"   URL: https://www.youtube.com/watch?v={video_id}")
+                #print(f"   ID: {video_id}")
+                #print(f"   URL: https://www.youtube.com/watch?v={video_id}")
                 
                 # Subir miniatura si se proporciona
                 if thumbnail_path and os.path.exists(thumbnail_path):
@@ -394,7 +407,7 @@ class BatchYouTubeUploader:
                     return None
     
     def batch_upload_videos(self, videos_list, privacy_status="private", 
-                        description_template="", tags=None, delay=5):
+                        description_template=DEFAULT_DESCRIPTION, tags=None, delay=5):
         """
         Sube múltiples videos a YouTube
         
@@ -407,7 +420,12 @@ class BatchYouTubeUploader:
         """
         
         if tags is None:
-            tags = ["música", "audio", "imagen"]
+            tags = ["nettspend bafk type beat", "nettspend tyla type beat", "nettspend type beat", 
+                    "osamason type beat", "type beat", "nettspend", "yhapojj x nettspend type beat", 
+                    "free type beat", "free nettspend type beat", "yhapojj type beat", "free osamason type beat", 
+                    "osamason type beat hard", "glokk40spaz type beat", "osamason type beat free", "che type beat",
+                    "fakemink", "fakemink prod ok", "free che type beat" ,"free fakemink type beat", "wegonebeok", 
+                    "ok beats", "free ok beats", "underground beats", "gyro beats", "prod gyro beats","ok"]
         
         uploaded = []
         total = len(videos_list)
@@ -421,29 +439,43 @@ class BatchYouTubeUploader:
             
             # Crear descripción personalizada (si hay información de imagen/audio)
             if 'image' in video_info and 'audio' in video_info:
-                description = description_template.format(
+                description = DEFAULT_DESCRIPTION.format(
                     image=os.path.basename(video_info['image']),
                     audio=os.path.basename(video_info['audio']),
                     video=os.path.basename(video_info['video'])
                 ) if description_template else ""
                 # Tags específicos para videos creados desde pares
-                video_tags = tags + [os.path.splitext(os.path.basename(video_info.get('audio', '')))[0]]
+                video_tags = tags
             else:
                 # Para videos independientes (solo archivo MP4)
-                description = description_template.format(
+                description = DEFAULT_DESCRIPTION.format(
                     video=os.path.basename(video_info['video'])
-                ) if description_template else ""
+                ) if DEFAULT_DESCRIPTION else ""
                 video_tags = tags
             
             # Obtener título (con fallback si no existe)
-            title = video_info.get('title', 
-                        os.path.splitext(os.path.basename(video_info.get('video', '')))[0])
-            
+            base_title = video_info.get('title', '')
+        
+            # Formatear como: "free nettspend + wegonebeok type beat - "Titulo""
+            # Si el título está vacío, usar un fallback
+            if not base_title:
+                base_title = os.path.splitext(os.path.basename(video_info.get('video', '')))[0]
+            # Extraer solo primer nombre del fallback también
+            base_title = base_title.split()[0] if ' ' in base_title else base_title
+        
+            # Capitalizar primera letra
+            base_title_cap = base_title.capitalize()
+        
+            # Título final formateado
+            final_title = f'free nettspend + wegonebeok type beat - "{base_title_cap}"'
+        
+            print(f"📝 Título: {final_title}")
+        
             # Subir video
             result = self.upload_video(
                 video_path=video_info['video'],
-                title=title,
-                description=description,
+                title=final_title,
+                description=DEFAULT_DESCRIPTION,
                 tags=video_tags,
                 privacy_status=privacy_status,
                 thumbnail_path=video_info.get('thumbnail')
@@ -476,14 +508,17 @@ class BatchYouTubeUploader:
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(log_data, f, indent=2, ensure_ascii=False)
         
-        print(f"📝  Registro guardado en: {filename}")
+        #print(f"📝  Registro guardado en: {filename}")
 
-def find_files_by_pattern(folder, image_pattern=None, audio_pattern=None):
+def find_files_by_pattern(folder):
     """
-    Encuentra pares de archivos basados en patrones de nombre
+    Crea pares aleatorios: cada audio con una imagen diferente
+    No necesita que tengan el mismo nombre
+    """
+    import re
     
-    Ejemplo: imagen "cancion1.jpg" y audio "cancion1.mp3" serán emparejados
-    """
+    
+    # Separar imágenes y audios
     image_files = []
     audio_files = []
     
@@ -491,26 +526,77 @@ def find_files_by_pattern(folder, image_pattern=None, audio_pattern=None):
         file_path = os.path.join(folder, file)
         if os.path.isfile(file_path):
             ext = os.path.splitext(file)[1].lower()
-            name = os.path.splitext(file)[0]
             
             if ext in ['.jpg', '.jpeg', '.png', '.bmp', '.gif']:
-                image_files.append((name, file_path))
+                image_files.append(file_path)
             elif ext in ['.mp3', '.wav', '.m4a', '.flac', '.aac']:
-                audio_files.append((name, file_path))
+                audio_files.append(file_path)
     
-    # Emparejar por nombre similar
+    print(f"📊 Encontrados: {len(image_files)} imágenes, {len(audio_files)} audios")
+    
+    if not image_files or not audio_files:
+        print("❌ No hay suficientes archivos")
+        return []
+    
+    # Mezclar las imágenes para distribución aleatoria
+    random.shuffle(image_files)
+    
+    # Crear pares: cada audio con una imagen
     pairs = []
-    for img_name, img_path in image_files:
-        for aud_name, aud_path in audio_files:
-            # Simple matching: si los nombres son similares
-            if img_name.lower() == aud_name.lower():
-                pairs.append({
-                    'image': img_path,
-                    'audio': aud_path,
-                    'title': img_name
-                })
     
-    return pairs
+    # Si hay menos imágenes que audios, repetir algunas imágenes
+    if len(image_files) < len(audio_files):
+        print(f"⚠️  Más audios que imágenes. Algunas imágenes se repetirán.")
+        # Extender la lista de imágenes para que alcance
+        while len(image_files) < len(audio_files):
+            image_files.append(random.choice(image_files))
+    
+    # Crear los pares
+    for i, audio_path in enumerate(audio_files):
+        
+        # Usar imagen correspondiente (si hay más audios, se repiten imágenes)
+        image_path = image_files[i % len(image_files)]
+        
+        # Obtener nombre del archivo de audio sin extensión
+        audio_filename = os.path.basename(audio_path)
+        audio_name_without_ext = os.path.splitext(audio_filename)[0]
+        
+        
+        # EXTRAER NOMBRE COMPLETO HASTA EL PRIMER NÚMERO (BPM)
+        # Buscar el primer número en el string
+        match = re.search(r'\d+', audio_name_without_ext)
+        
+        if match:
+            # Todo lo que está antes del primer número es el nombre del beat
+            beat_name = audio_name_without_ext[:match.start()].strip()
+        else:
+            # Si no hay número, tomar todo hasta el @ si existe
+            if '@' in audio_name_without_ext:
+                beat_name = audio_name_without_ext.split('@')[0].strip()
+            else:
+                beat_name = audio_name_without_ext.strip()
+        
+        # titulo en minuscula
+        formatted_title = beat_name.lower()
+        
+        # Nombres para mostrar
+        audio_name = os.path.splitext(os.path.basename(audio_path))[0]
+        image_name = os.path.splitext(os.path.basename(image_path))[0]
+        
+        pairs.append({
+            'image': image_path,
+            'audio': audio_path,
+            'title': formatted_title,  # El título será solo el nombre del audio
+            'image_name': image_name,
+            'audio_name': audio_name
+        })
+    
+    # Mostrar qué pares se crearon
+    #print(f"\n🔀 Pares creados aleatoriamente:")
+    #for i, pair in enumerate(pairs, 1):
+        #print(f"   {i:2d}. 🎵 {pair['audio_name']} + 🖼️  {pair['image_name']}")
+    
+    #return pairs
 
 def main():
     parser = argparse.ArgumentParser(description='Crear y subir múltiples videos a YouTube')
@@ -715,6 +801,8 @@ def interactive_mode():
         if videos:
             print(f"\n✅ {len(videos)} videos creados. Iniciando subida...")
             uploader.batch_upload_videos(videos, privacy, delay=delay)
+
+
 
 if __name__ == "__main__":
     # Para uso con argumentos:
