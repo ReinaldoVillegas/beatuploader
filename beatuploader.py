@@ -418,7 +418,7 @@ class BatchYouTubeUploader:
             tags: Etiquetas comunes para todos los videos
             delay: Segundos de espera entre subidas
         """
-        
+        import re
         if tags is None:
             tags = ["nettspend bafk type beat", "nettspend tyla type beat", "nettspend type beat", 
                     "osamason type beat", "type beat", "nettspend", "yhapojj x nettspend type beat", 
@@ -458,13 +458,27 @@ class BatchYouTubeUploader:
         
             # Formatear como: "free nettspend + wegonebeok type beat - "Titulo""
             # Si el título está vacío, usar un fallback
+            
             if not base_title:
                 base_title = os.path.splitext(os.path.basename(video_info.get('video', '')))[0]
+                
             # Extraer solo primer nombre del fallback también
             base_title = base_title.split()[0] if ' ' in base_title else base_title
         
-            # Capitalizar primera letra
-            base_title_cap = base_title.capitalize()
+            
+            base_title_cap = video_info.get('title', '')
+            
+            if not base_title:
+                # Usar nombre del audio como fallback
+                audio_name = os.path.splitext(os.path.basename(video_info.get('audio', '')))[0]
+                # Extraer nombre del beat desde el audio
+                match = re.search(r'\d+', audio_name)
+                if match:
+                    base_title = audio_name[:match.start()].strip().lower()
+                elif '@' in audio_name:
+                    base_title = audio_name.split('@')[0].strip().lower()
+                else:
+                    base_title = audio_name.strip().lower()                    
         
             # Título final formateado
             final_title = f'free nettspend + wegonebeok type beat - "{base_title_cap}"'
@@ -596,7 +610,7 @@ def find_files_by_pattern(folder):
     #for i, pair in enumerate(pairs, 1):
         #print(f"   {i:2d}. 🎵 {pair['audio_name']} + 🖼️  {pair['image_name']}")
     
-    #return pairs
+    return pairs
 
 def main():
     parser = argparse.ArgumentParser(description='Crear y subir múltiples videos a YouTube')
